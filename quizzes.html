@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            position: relative;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        fieldset {
+            margin-bottom: 20px;
+            border: none;
+        }
+        legend {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #007bff;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .quiz-result {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .quiz-result h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #007bff;
+        }
+        .quiz-result p {
+            font-size: 1.1em;
+            text-align: center;
+        }
+        .quiz-result button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+        .quiz-result button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Quiz</h1>
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <fieldset>
+                <legend>Question 1: What is the capital of France?</legend>
+                <input type="radio" id="paris" name="question1" value="Paris">
+                <label for="paris">Paris</label><br>
+                <input type="radio" id="london" name="question1" value="London">
+                <label for="london">London</label><br>
+                <input type="radio" id="berlin" name="question1" value="Berlin">
+                <label for="berlin">Berlin</label><br>
+            </fieldset>
+
+            <!-- Question 2 -->
+            <fieldset>
+                <legend>Question 2: Who wrote "Romeo and Juliet"?</legend>
+                <input type="radio" id="shakespeare" name="question2" value="Shakespeare">
+                <label for="shakespeare">Shakespeare</label><br>
+                <input type="radio" id="dickens" name="question2" value="Dickens">
+                <label for="dickens">Dickens</label><br>
+                <input type="radio" id="twain" name="question2" value="Twain">
+                <label for="twain">Twain</label><br>
+            </fieldset>
+
+            <!-- Add more questions here -->
+
+            <!-- Submit Button -->
+            <input type="submit" value="Submit">
+        </form>
+        <div class="quiz-result">
+            <h2>Quiz Result</h2>
+            <p>Your score is <span id="score"></span> out of <span id="totalQuestions"></span>.</p>
+            <button id="retryQuiz">Retry Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        const quizForm = document.getElementById('quizForm');
+        const quizResult = document.querySelector('.quiz-result');
+        const scoreDisplay = document.getElementById('score');
+        const totalQuestionsDisplay = document.getElementById('totalQuestions');
+        const retryButton = document.getElementById('retryQuiz');
+
+        quizForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Answers
+            const answers = {
+                question1: 'Paris',
+                question2: 'Shakespeare'
+                // Add more answers for additional questions
+            };
+
+            // Calculate score
+            let score = 0;
+            for (let i = 1; i <= Object.keys(answers).length; i++) {
+                const questionName = 'question' + i;
+                const selectedAnswer = quizForm.elements[questionName].value;
+                if (selectedAnswer === answers[questionName]) {
+                    score++;
+                }
+            }
+
+            // Display quiz result
+            scoreDisplay.textContent = score;
+            totalQuestionsDisplay.textContent = Object.keys(answers).length;
+            quizResult.style.display = 'block';
+        });
+
+        // Retry quiz button functionality
+        retryButton.addEventListener('click', function() {
+            quizResult.style.display = 'none';
+            quizForm.reset();
+        });
+    </script>
+</body>
+</html>

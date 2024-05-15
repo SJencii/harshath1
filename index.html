@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Tracker</title>
+    <style>
+        /* Reset default margin and padding */
+        body, h1, h2, h3, p, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('./class.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+
+        section {
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px auto;
+            max-width: 1000px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        section h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .dashboard {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .upcoming-classes, .recorded-classes {
+            flex-basis: calc(50% - 20px);
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .class-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .class-list li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .class-list li:hover {
+            background-color: #f0f0f0;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Student Performance Tracker</h1>
+        <nav>
+            <ul>
+                
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="upcomingclasses.html">Classes</a></li> <!-- Updated link -->
+                <li><a href="quizzes.html">Quizzes</a></li>
+                <li><a href="#progress">Progress</a></li>
+                
+                <li><a href="class_materials.html">Class Materials</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="dashboard">
+        <h2>Dashboard</h2>
+        <div class="dashboard">
+            <div class="upcoming-classes">
+                <h3>Upcoming Classes</h3>
+                <ul id="upcomingList" class="class-list">
+                    <li><a href="#">Mathematics - May 20, 2024</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+
+    <footer>
+        <p>&copy; 2024 Student Performance Tracker</p>
+    </footer>
+
+
+    <script>
+        // Function to handle redirection
+        function redirectToClasses() {
+            window.location.href = "classes.html"; // Redirect to classes.html
+        }
+
+        // Add event listener to all class links
+        document.querySelectorAll('.class-list li a').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                redirectToClasses(); // Redirect to classes.html
+            });
+        });
+
+
+       
+    </script>
+
+</body>
+</html>
